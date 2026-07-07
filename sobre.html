@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre — Decifrando o Oscar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/sobre.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="nav__logo">Decifrando o Oscar</a>
+    <nav class="nav-principal">
+      <a href="index.html">panorama</a>
+      <a href="filmes.html">filmes</a>
+      <a href="sobre.html" class="ativo">sobre</a>
+    </nav>
+    <button class="nav-toggle" aria-label="abrir menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="container">
+    <div class="conteudo-sobre">
+      <span class="eyebrow">o projeto</span>
+      <h1>Como este site foi feito</h1>
+      <p>
+        Este projeto nasceu de uma análise exploratória dos dados do Oscar, construída no
+        Observable com Vega-Lite e D3.js. Os dados foram enriquecidos via API do TMDB,
+        adicionando gêneros, orçamento, bilheteria e plataformas de streaming.
+      </p>
+
+      <!-- <blockquote class="citacao">
+        <p>“O Oscar nunca foi só sobre mérito. É sobre narrativa, momento e quem a Academia quer premiar naquele ano.”</p>
+        <span>ponto de partida da análise</span>
+      </blockquote> -->
+
+      <span class="secao-titulo">fontes de dados</span>
+      <div class="fontes-lista">
+
+        <a class="fonte-card" href="https://www.kaggle.com/datasets/unanimad/the-oscar-award" target="_blank" rel="noopener">
+          <div class="fonte-icone" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <ellipse cx="12" cy="5" rx="8" ry="3"/>
+              <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+              <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+            </svg>
+          </div>
+          <div class="fonte-texto">
+            <div class="fonte-titulo">The Oscar Award Dataset</div>
+            <div class="fonte-desc">Kaggle · indicações de 1927 a 2023</div>
+          </div>
+          <span class="fonte-link" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+
+        <a class="fonte-card" href="https://www.themoviedb.org/documentation/api" target="_blank" rel="noopener">
+          <div class="fonte-icone" aria-hidden="true">API</div>
+          <div class="fonte-texto">
+            <div class="fonte-titulo">TMDB API</div>
+            <div class="fonte-desc">metadados, pôsteres, orçamento e elenco</div>
+          </div>
+          <span class="fonte-link" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+
+        <a class="fonte-card" href="#" target="_blank" rel="noopener">
+          <div class="fonte-icone" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 4h13l3 3v13H4z"/>
+              <path d="M8 4v6h8V4M8 20v-6h8v6"/>
+            </svg>
+          </div>
+          <div class="fonte-texto">
+            <div class="fonte-titulo">Observable notebook original</div>
+            <div class="fonte-desc">análise exploratória completa com Vega-Lite e D3</div>
+          </div>
+          <span class="fonte-link" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+
+      </div>
+
+      <span class="secao-titulo">tecnologias</span>
+      <div class="tecnologias-lista">
+        <span class="tec-tag">Vega-Lite</span>
+        <span class="tec-tag">D3.js</span>
+        <span class="tec-tag">Observable</span>
+        <span class="tec-tag">Python / TMDB API</span>
+        <span class="tec-tag">HTML · CSS · JS</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer com-link">
+  <div class="container">
+    <span>dados atualizados em 2024 · uso não comercial</span>
+    <a href="https://github.com" target="_blank" rel="noopener" aria-label="repositório no GitHub">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

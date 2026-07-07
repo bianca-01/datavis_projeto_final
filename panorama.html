@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panorama — Decifrando o Oscar</title>
+  <meta name="description" content="95 anos de Oscar em números: quem domina, o que a nota média revela, para onde vai o dinheiro, gêneros e o Teste de Bechdel." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/panorama.css" />
+</head>
+<body class="panorama-page">
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="wrap">
+      <a href="index.html" class="nav__logo">Decifrando <span>o Oscar</span></a>
+      <ul class="nav-links">
+        <li><a href="panorama.html" class="active">Panorama</a></li>
+        <li><a href="filmes.html">Filmes</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Panorama</span>
+      <h1>98 anos de Oscar,<br/>lidos pelos números</h1>
+      <p class="lede">
+        Da corrida por indicações ao destino do dinheiro investido em cada produção —
+        uma leitura guiada pelos dados com um gráfico e uma curiosidade a cada parada.
+      </p>
+      <!-- <div class="page-stats">
+        <div class="stat"><b>9.085</b><span>indicações</span></div>
+        <div class="stat"><b>3.469</b><span>filmes únicos</span></div>
+        <div class="stat"><b>19</b><span>gráficos</span></div>
+        <div class="stat"><b>6</b><span>atos narrativos</span></div>
+      </div> -->
+    </div>
+  </header>
+
+  <!-- ÍNDICE -->
+  <nav class="group-index" aria-label="Índice do panorama">
+    <div class="wrap">
+      <ol>
+        <li><a href="#quem-domina"><b>01</b>Quem domina</a></li>
+        <li><a href="#qualidade"><b>02</b>Qualidade</a></li>
+        <li><a href="#dinheiro"><b>03</b>Dinheiro</a></li>
+        <li><a href="#generos"><b>04</b>Gêneros & décadas</a></li>
+        <li><a href="#internacional"><b>05</b>Internacional</a></li>
+        <li><a href="#bechdel"><b>06</b>Teste de Bechdel</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════
+         01 — QUEM DOMINA
+    ═══════════════════════════════════════════════════ -->
+    <section id="quem-domina">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>01</em> · Filmes, pessoas e franquias</span>
+          <h2>Quem domina o Oscar?</h2>
+          <p>Alguns filmes acumulam indicações em quase todas as categorias. Outros vencem com uma única nominação. Começamos pelos recordes mais impactantes do dataset.</p>
+        </div>
+
+        <!-- 1A — Top filmes: GRÁFICO LARGO -->
+        <article class="unit unit--wide">
+          <div class="unit-text">
+            <p class="gancho">Três filmes diferentes, de décadas diferentes, empatados no topo. Qual a chance disso?</p>
+            <p class="leitura">
+              <b>All About Eve</b> (1950) e <b>Titanic</b> (1997) dividem o recorde histórico de 14 indicações.
+              <b>La La Land</b> (2016) alcançou a mesma marca depois, mas com taxa de conversão bem menor —
+              6 vitórias contra 11 do Titanic.
+            </p>
+            <div class="pull-stat">
+              <span class="pull-stat__num">79%</span>
+              <span class="pull-stat__label">aproveitamento do Titanic: 11 vitórias em 14 indicações — a maior eficiência entre os recordistas</span>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p>Na 1ª cerimônia do Oscar (1929), foram entregues apenas 12 estatuetas em 15 minutos — durante um banquete privado no Hollywood Roosevelt Hotel.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Top 10 filmes com mais indicações — 1927 a 2025</p>
+            <div id="chart-top-indicados"></div>
+          </div>
+        </article>
+
+        <!-- 1B — Pessoas: CARDS COM FOTOS + GRÁFICO -->
+        <article class="unit unit--flip">
+          <div class="unit-text">
+            <p class="gancho">Um único nome domina o topo: Alfred Newman, com 9 Oscars — todos na mesma categoria.</p>
+            <p class="leitura">
+              O compositor <b>Alfred Newman</b> lidera isolado com 9 vitórias, seguido por
+              <b>John Williams</b> (5) e um empate com nomes como John Ford, Edith Head e Colleen Atwood (4 cada).
+            </p>
+            <div class="person-strip" aria-label="Destaques pessoais">
+              <div class="person-card">
+                <div class="person-card__photo" style="background:#1a1410;">
+                  <img src="https://image.tmdb.org/t/p/original/wswitHP5jQNvsIxd6Yypa1Crmn1.jpg"
+                       alt="John Williams"
+                       onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>JW</span>'" />
+                </div>
+                <p class="person-card__name">John Williams</p>
+                <p class="person-card__stat">54 indicações</p>
+              </div>
+              <div class="person-card">
+                <div class="person-card__photo" style="background:#1a1410;">
+                  <img src="https://image.tmdb.org/t/p/original/g5cVxQBAQ3AXt3LhdBXtbbN47Uc.jpg"
+                       alt="Meryl Streep"
+                       onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>MS</span>'" />
+                </div>
+                <p class="person-card__name">Meryl Streep</p>
+                <p class="person-card__stat">21 indicações</p>
+              </div>
+              <div class="person-card">
+                <div class="person-card__photo" style="background:#1a1410;">
+                  <img src="https://image.tmdb.org/t/p/original/hzBSOe6bburyMeeCqD9kR9tRfdD.jpg"
+                       alt="Katharine Hepburn"
+                       onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>KH</span>'" />
+                </div>
+                <p class="person-card__name">Katharine Hepburn</p>
+                <p class="person-card__stat">4 vitórias</p>
+              </div>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p>John Williams foi indicado pela primeira vez em 1968 e ainda compete atualmente — mais de 5 décadas de indicações, um recorde sem paralelo.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Pessoas com mais Oscars</p>
+            <div id="chart-pessoas-premios"></div>
+          </div>
+        </article>
+
+        <!-- 1C — Franquias -->
+        <article class="unit">
+          <div class="unit-text">
+            <p class="gancho">O Senhor dos Anéis tem mais Oscars do que qualquer outra franquia — e por uma margem enorme.</p>
+            <p class="leitura">
+              A trilogia acumula <b>17 estatuetas</b>, impulsionada pela varrida histórica de
+              <i>O Retorno do Rei</i> (2004). O Poderoso Chefão vem em segundo com 9, e
+              Duna já chegou a 8 em apenas dois filmes.
+            </p>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p><i>O Retorno do Rei</i> venceu nas 11 categorias em que foi indicado — 100% de aproveitamento, o recorde absoluto da história.</p>
+            </div>
+          </div>
+          <div class="unit-chart">
+            <p class="chart-title">Franquias com mais Oscars (Top 10)</p>
+            <div id="chart-franquias"></div>
+          </div>
+        </article>
+
+        <!-- 1D — Múltiplas categorias + Indicados sem vencer: LADO A LADO -->
+        <div class="dual-units">
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">Vencer em três categorias diferentes é um feito raríssimo — apenas 4 nomes conseguiram.</p>
+              <div class="person-strip person-strip--sm" aria-label="Os mais injustiçados">
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/uwNXqNOOA6cUgdiALCAX4FIl8aS.jpg"
+                         alt="Joseph Ruttenberg"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>PO</span>'" />
+                  </div>
+                  <p class="person-card__name">Joseph Ruttenberg</p>
+                  <!-- <p class="person-card__stat person-card__stat--red">8 indicações</p> -->
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/309zHbAHOXv1PffWz4C9SEEgEGa.jpg"
+                         alt="Robert Benton"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>DW</span>'" />
+                  </div>
+                  <p class="person-card__name">Robert Benton</p>
+                  <!-- <p class="person-card__stat person-card__stat--red">13 indicações</p> -->
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/mZBy39mFACFHMCqfbsN4Kc2qb2k.jpg"
+                         alt="James L. Brooks"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>AN</span>'" />
+                  </div>
+                  <p class="person-card__name">James L. Brooks</p>
+                  <!-- <p class="person-card__stat person-card__stat--red">14 indicações</p> -->
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/wKfNgfRvPhLHMrwuweSwLOmhRzT.jpg"
+                         alt="Sean Baker"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>DW</span>'" />
+                  </div>
+                  <p class="person-card__name">Sean Baker</p>
+                  <!-- <p class="person-card__stat person-card__stat--red">14 indicações</p> -->
+                </div>
+              </div>
+              <p class="leitura">
+                Joseph Ruttenberg, Robert Benton, James L. Brooks e Sean Baker
+                dividem o topo, com vitórias em categorias tão distintas quanto
+                Fotografia, Roteiro e Montagem.
+              </p>
+            </div>
+            
+            <!-- <div class="unit-chart">
+              <p class="chart-title">Vitórias em múltiplas categorias</p>
+              <div id="chart-multiplas-categorias"></div>
+            </div> -->
+          </article>
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">Alex North e Thomas Newman: 14 indicações cada. Zero vitórias.</p>
+              <div class="person-strip person-strip--sm" aria-label="Os mais injustiçados">
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/cQdULVxbxK1HbgqblImXfVXkGyO.jpg"
+                         alt="Peter O'Toole"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>PO</span>'" />
+                  </div>
+                  <p class="person-card__name">Peter O'Toole</p>
+                  <p class="person-card__stat person-card__stat--red">8 indicações</p>
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/A2e11V3aCvYohBVzLDsgkKPM4V0.jpg"
+                         alt="Diane Warren"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>DW</span>'" />
+                  </div>
+                  <p class="person-card__name">Diane Warren</p>
+                  <p class="person-card__stat person-card__stat--red">13 indicações</p>
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/zk2hqLyIv84pGTZsFCqXlATbABD.jpg"
+                         alt="Alex North"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>AN</span>'" />
+                  </div>
+                  <p class="person-card__name">Alex North</p>
+                  <p class="person-card__stat person-card__stat--red">14 indicações</p>
+                </div>
+                <div class="person-card">
+                  <div class="person-card__photo person-card__photo--injust">
+                    <img src="https://image.tmdb.org/t/p/original/j8rIiOSdBjtDL5vji8m5BtChZou.jpg"
+                         alt="Thomas Newman"
+                         onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>DW</span>'" />
+                  </div>
+                  <p class="person-card__name">Thomas Newman</p>
+                  <p class="person-card__stat person-card__stat--red">14 indicações</p>
+                </div>
+              </div>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>O'Toole recebeu um Oscar honorário em 2003, mas jamais venceu uma categoria competitiva.</p>
+              </div>
+            </div>
+            <!-- <div class="unit-chart">
+              <p class="chart-title">Mais indicados sem nunca vencer</p>
+              <div id="chart-mais-indicados-sem-vit"></div>
+            </div> -->
+          </article>
+
+        </div><!-- /dual-units -->
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         02 — QUALIDADE
+    ═══════════════════════════════════════════════════ -->
+    <section id="qualidade" class="section-alt">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>02</em> · Notas, correlações e diretores</span>
+          <h2>Vencer significa ser melhor avaliado?</h2>
+          <p>Cruzamos a nota do público (TMDB) com o histórico de vitórias para ver se a Academia e a audiência costumam concordar.</p>
+        </div>
+
+        <!-- 2A — Nota média: GRÁFICO LARGO -->
+        <article class="unit unit--wide">
+          <div class="unit-text">
+            <p class="gancho">A nota média dos vencedores de Melhor Filme flutua entre 7,0 e 8,5 desde 1970. Mas houve exceções históricas.</p>
+            <p class="leitura">
+              O ponto mais baixo ocorreu nos anos 1960 — crise criativa em Hollywood.
+              Os picos aparecem nos anos 1970 (Nova Hollywood) e 1990.
+              A consistência é notável: a Academia evita os extremos.
+            </p>
+            <div class="pull-stat">
+              <span class="pull-stat__num">8.5</span>
+              <span class="pull-stat__label">nota máxima registrada, nos anos 1970 — período da Nova Hollywood</span>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p><i>O Maior Espetáculo da Terra</i> (1952) tem nota 6,1 no TMDB — um dos vencedores mais criticados da história, que derrotou <i>Alta Sociedade</i> e <i>Moulin Rouge!</i>.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Nota média dos vencedores de Melhor Filme (TMDB · 1927–2025)</p>
+            <div id="chart-nota-media"></div>
+          </div>
+        </article>
+
+        <!-- 2B — Correlação: FULL WIDTH -->
+        <article class="unit unit--full">
+          <div class="unit-text unit-text--row">
+            <div>
+              <p class="gancho">Se você quer apostar no Melhor Filme, olhe primeiro para o Melhor Diretor — a correlação é de 60+ vezes.</p>
+              <p class="leitura">
+                O quadrado mais escuro da matriz está em <b>BEST PICTURE × DIRECTING</b>,
+                com mais de 60 ocorrências simultâneas históricas.
+                Roteiro adaptado também funciona como bom preditor da vitória principal.
+              </p>
+            </div>
+            <div class="curiosidade curiosidade--inline">
+              <span class="tag">Curiosidade</span>
+              <p>Ben Affleck sequer foi indicado a Diretor por <i>Argo</i> (2012) — mas levou Melhor Filme como produtor. A exceção que confirma a regra.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--heatmap">
+            <p class="chart-title">Matriz de correlação — categorias vencidas no mesmo filme</p>
+            <div id="chart-correlacao"></div>
+          </div>
+        </article>
+
+        <!-- 2C — Diretores -->
+        <article class="unit unit--flip">
+          <div class="unit-text">
+            <p class="gancho">Há diretores com 5 indicações à Direção que nunca viram um filme seu vencer Melhor Filme.</p>
+            <p class="leitura">
+              O ponto isolado no canto superior direito do scatter representa o diretor com
+              mais indicações E mais filmes vencedores — provavelmente <b>John Ford</b> ou <b>William Wyler</b>.
+              Na base, muitos acumulam nomeações sem jamais conquistar o prêmio principal.
+            </p>
+            <div class="person-strip" aria-label="Diretores em destaque">
+              <div class="person-card">
+                <div class="person-card__photo">
+                  <img src="https://image.tmdb.org/t/p/original/108fiNM6poRieMg7RIqLJRxdAwG.jpg"
+                       alt="Alfred Hitchcock"
+                       onerror="this.parentElement.innerHTML='<span class=\'person-card__initials\'>AH</span>'" />
+                </div>
+                <p class="person-card__name">Alfred Hitchcock</p>
+                <p class="person-card__stat person-card__stat--red">5 ind. · 0 vitórias</p>
+              </div>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p>Alfred Hitchcock nunca venceu o Oscar de Melhor Diretor, apesar de 5 indicações — e nenhum de seus filmes levou Melhor Filme.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Diretores: indicações à Direção × vitórias em Melhor Filme</p>
+            <div id="chart-diretores"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         03 — DINHEIRO
+    ═══════════════════════════════════════════════════ -->
+    <section id="dinheiro">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>03</em> · Orçamento, bilheteria e ROI</span>
+          <h2>Para onde vai o dinheiro do Oscar?</h2>
+          <p>Custo de produção nem sempre significa mais prestígio — mas certamente moldou décadas inteiras de indicados.</p>
+        </div>
+
+        <!-- 3A e 3B: DOIS GRÁFICOS LADO A LADO -->
+        <div>
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">O orçamento dos vencedores disparou nos anos 1990, mas caiu na década de 2010.</p>
+              <p class="leitura">
+                Nos anos 2010, filmes como <i>Moonlight</i> e <i>Birdman</i>
+                puxaram a média para baixo — US$20M contra US$48M dos anos 1990.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>Os anos 2020 já quebram recorde: média de US$55M, puxada por <i>Oppenheimer</i>.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Orçamento médio dos vencedores por década (US$)</p>
+              <div id="chart-orcamento-decada"></div>
+            </div>
+          </article>
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">A partir de 1977, vencedores de Efeitos Visuais passaram a faturar acima de US$200M sistematicamente.</p>
+              <p class="leitura">
+                O gráfico em escala logarítmica mostra uma explosão pós-<i>Star Wars</i>,
+                com picos bilionários nos anos 2000. O primeiro vencedor da categoria (1929,
+                <i>Asas</i>) usou arames reais e maquetes.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>O primeiro Oscar de Efeitos foi entregue para <i>Asas</i> em 1929 — aviões de papel e fumaça de verdade, sem nenhum efeito digital.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Bilheteria dos vencedores de Efeitos Visuais (log)</p>
+              <div id="chart-bilheteria-vfx"></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 3C — ROI: GRÁFICO LARGO -->
+        <article class="unit unit--wide">
+          <div class="unit-text">
+            <p class="gancho">«...E o Vento Levou» gerou uma bilheteria 100 vezes maior que seu orçamento — um ROI inalcançável hoje.</p>
+            <p class="leitura">
+              Filmes antigos dominam o topo do ROI: <i>A Um Passo da Eternidade</i> (18×),
+              <i>A Ponte do Rio Kwai</i> (16×) e <i>Aconteceu Naquela Noite</i> (14×).
+              A lógica é simples: custo baixo, bilheteria ajustada pela inflação.
+            </p>
+            <div class="pull-stat">
+              <span class="pull-stat__num">100×</span>
+              <span class="pull-stat__label">o ROI de <em>...E o Vento Levou</em> — ainda o maior da história do cinema</span>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p>Ajustado pela inflação, <i>...E o Vento Levou</i> continua sendo o filme de maior bilheteria de toda a história, superando <i>Avatar</i> e <i>Star Wars</i>.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Retorno sobre orçamento (ROI) — Top 20 Melhores Filmes</p>
+            <div id="chart-roi"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         04 — GÊNEROS & DÉCADAS
+    ═══════════════════════════════════════════════════ -->
+    <section id="generos" class="section-alt">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>04</em> · Gêneros, décadas e tendências</span>
+          <h2>O que a Academia gosta de premiar muda com o tempo?</h2>
+          <p>Alguns padrões são estáveis há décadas. Outros só apareceram recentemente — e revelam bastante sobre o próprio cinema.</p>
+        </div>
+
+        <!-- 4A e 4B — gênero + figurino LADO A LADO -->
+        <div >
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">O Drama é o rei absoluto do Oscar: mais de 54 vitórias em Melhor Filme.</p>
+              <p class="leitura">
+                A distância para o segundo colocado (Comédia, 11 vitórias) é abissal.
+                Terror e Faroeste mal somam 1 a 3 vitórias cada.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p><i>O Silêncio dos Inocentes</i> (1991) é o único terror a vencer Melhor Filme — e ainda assim é classificado por muitos como suspense psicológico.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Vitórias em Melhor Filme por gênero</p>
+              <div id="chart-genero"></div>
+            </div>
+          </article>
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">O Oscar de Figurino nasceu com filmes de época, mas nos anos 1970 os contemporâneos tomaram conta.</p>
+              <p class="leitura">
+                A década de 1990 viu um ressurgimento histórico (7 vitórias para época).
+                Até 1966, a categoria era dividida em duas: preto e branco e colorido.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>Até 1966, a categoria era dividida em duas — uma para filmes em preto e branco e outra para coloridos — o que favorecia produções contemporâneas.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Melhor Figurino — Época × Contemporâneo por década</p>
+              <div id="chart-figurino"></div>
+              <!-- <div class="chart-legend">
+                <span><span class="swatch" style="background:#D4AF37"></span>filme de época</span>
+                <span><span class="swatch" style="background: #7A2E2E;"></span>contemporâneo</span>
+              </div> -->
+            </div>
+          </article>
+        </div>
+
+        <!-- 4C — Palavras-chave: GRÁFICO LARGO -->
+        <article class="unit unit--wide">
+          <div class="unit-text">
+            <p class="gancho">«Baseado em romance ou livro» é a palavra‑chave mais frequente entre os vencedores de Melhor Filme.</p>
+            <p class="leitura">
+              «Preto e branco», «baseado em história real» e «Segunda Guerra Mundial»
+              completam o top — a Academia tem preferência clara por narrativas históricas e literárias.
+            </p>
+            <div class="pull-stat">
+              <span class="pull-stat__num">300+</span>
+              <span class="pull-stat__label">ocorrências de "musical" e "biography" juntas entre os vencedores</span>
+            </div>
+            <div class="curiosidade">
+              <span class="tag">Curiosidade</span>
+              <p>A palavra-chave «world war ii» aparece mais de 150 vezes entre os vencedores — a Segunda Guerra é o tema histórico favorito da Academia.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--tall">
+            <p class="chart-title">Palavras‑chave mais comuns em Melhor Filme</p>
+            <div id="chart-palavras-chave"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         05 — INTERNACIONAL & STREAMING
+    ═══════════════════════════════════════════════════ -->
+    <section id="internacional">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>05</em> · Internacional e streaming</span>
+          <h2>O Oscar é realmente mundial?</h2>
+          <p>Analisamos a presença internacional nas vitórias e indicações, e a acessibilidade atual dos filmes premiados.</p>
+        </div>
+
+        <!-- 5A — Mapa: FULL WIDTH -->
+        <article class="unit unit--full">
+          <div class="unit-text unit-text--row">
+            <div>
+              <p class="gancho">O Reino Unido acumula 1.389 indicações — mais que todos os outros países juntos (excluindo os EUA).</p>
+              <p class="leitura">
+                O mapa mostra um deserto de reconhecimento fora do eixo anglo-saxão
+                e da Europa Ocidental. A América Latina, África e Ásia aparecem em tons claros.
+                Foi apenas em 2020 que um filme em língua não-inglesa venceu Melhor Filme.
+              </p>
+            </div>
+            <div class="curiosidade curiosidade--inline">
+              <span class="tag">Curiosidade</span>
+              <p>Em 2020, <i>Parasita</i> quebrou a barreira de 92 anos: o primeiro Melhor Filme em língua não-inglesa da história.</p>
+            </div>
+          </div>
+          <div class="unit-chart unit-chart--map">
+            <p class="chart-title">Indicações por país (excluindo EUA)</p>
+            <div id="chart-indicacoes-pais"></div>
+          </div>
+        </article>
+
+        <!-- 5B + 5C — Internacional + Streaming LADO A LADO -->
+        <div class="dual-units">
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">A França domina o Oscar Internacional com 27 vitórias — mais que o dobro da Itália.</p>
+              <p class="leitura">
+                O topo é quase inteiramente europeu: Alemanha (7), UK (6) e Espanha (5).
+                O Brasil aparece com 1 vitória: <i>Central do Brasil</i> (1998).
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>A Itália não vence desde 2002, com <i>No Man's Land</i>. Espera há mais de duas décadas pelo retorno ao topo.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Países com mais vitórias em Melhor Filme Internacional</p>
+              <div id="chart-paises-internacional"></div>
+            </div>
+          </article>
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">A maioria dos vencedores está em streaming — mas filmes anteriores a 1980 têm cobertura muito menor.</p>
+              <p class="leitura">
+                Cerca de 80% dos títulos estão disponíveis digitalmente.
+                A fatia «indisponível» concentra-se na era de ouro, com direitos autorais complicados.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>Alguns clássicos vencedores, como <i>O Destino de uma Nação</i> (1930), só existem em arquivos físicos — nenhuma plataforma digital os oferece.</p>
+              </div>
+            </div>
+            <div class="unit-chart unit-chart--donut">
+              <p class="chart-title">Vencedores disponíveis em streaming</p>
+              <div id="chart-streaming"></div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         06 — TESTE DE BECHDEL
+    ═══════════════════════════════════════════════════ -->
+    <section id="bechdel" class="section-alt">
+      <div class="wrap">
+        <div class="group-header">
+          <span class="kicker"><em>06</em> · Representatividade feminina</span>
+          <h2>As mulheres têm voz no Oscar?</h2>
+          <p>O Teste de Bechdel exige que duas mulheres com nome conversem sobre algo que não seja um homem. Aplicamos isso a uma amostra de indicados e vencedores.</p>
+        </div>
+
+        <div class="bechdel-explainer" role="note">
+          <div class="bechdel-score bechdel-score--0">
+            <span class="bechdel-score__num">0</span>
+            <span>Nenhuma mulher com nome</span>
+          </div>
+          <div class="bechdel-score bechdel-score--1">
+            <span class="bechdel-score__num">1</span>
+            <span>Existem, mas não conversam</span>
+          </div>
+          <div class="bechdel-score bechdel-score--2">
+            <span class="bechdel-score__num">2</span>
+            <span>Conversam, mas sobre homens</span>
+          </div>
+          <div class="bechdel-score bechdel-score--3">
+            <span class="bechdel-score__num">3</span>
+            <span>Passa no teste ✓</span>
+          </div>
+        </div>
+
+        <div class="dual-units">
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">A maioria dos filmes atinge nota 3, mas o segundo maior grupo é o de nota 1 — onde mulheres existem, mas só falam de homens.</p>
+              <p class="leitura">
+                Mais de 40 filmes obtêm nota 3. Mais de 30 ficam na nota 1.
+                A nota 0 é rara — mas ainda presente em filmes dos anos 2000.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p>O Teste de Bechdel foi criado em 1985 por Alison Bechdel em uma tirinha cômica — e virou uma das métricas mais usadas para avaliar representatividade.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Distribuição das pontuações no Teste de Bechdel</p>
+              <div id="chart-bechdel-dist"></div>
+            </div>
+          </article>
+
+          <article class="unit unit--col">
+            <div class="unit-text">
+              <p class="gancho">Sem melhora ao longo do tempo: filmes com nota 1 aparecem na mesma frequência nos anos 1930 e nos anos 2020.</p>
+              <p class="leitura">
+                Filmes nota 3 existem consistentemente em todas as décadas.
+                Mas os nota 1 (falha parcial) também se mantêm estáveis —
+                a evolução esperada não aconteceu.
+              </p>
+              <div class="curiosidade">
+                <span class="tag">Curiosidade</span>
+                <p><i>O Grande Truque</i> (2006) e outros indicados recentes zerem o teste — evidência de que o cinema moderno segue falhando no básico.</p>
+              </div>
+            </div>
+            <div class="unit-chart">
+              <p class="chart-title">Evolução histórica do Teste de Bechdel</p>
+              <div id="chart-bechdel-scatter"></div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NAVEGAÇÃO RODAPÉ -->
+  <nav class="page-footer-nav" aria-label="Navegar para a próxima seção">
+    <div class="wrap page-footer-nav__inner">
+      <a href="../index.html" class="page-footer-nav__back">← início</a>
+      <a href="filmes.html" class="page-footer-nav__next">
+        <span>próxima seção</span>
+        <strong>Explorar os filmes →</strong>
+      </a>
+    </div>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Decifrando o Oscar — análise construída no Observable com Vega-Lite e a API do TMDB.</p>
+      <ul class="footer-links">
+        <li><a href="panorama.html">Panorama</a></li>
+        <li><a href="filmes.html">Filmes</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/panorama.js"></script>
+  <script src="js/tema-oscar.js"></script>
+</body>
+</html>

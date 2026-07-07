@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decifrando o Oscar</title>
+  <meta name="description" content="Uma análise de dados sobre 98 cerimônias de Oscar: 9.085 indicações, 3.469 filmes únicos, de 1927 a 2025." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav__logo" aria-label="Decifrando o Oscar — início">Decifrando o Oscar</span></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-links" class="nav__links" role="navigation" aria-label="Menu principal">
+      <a href="panorama.html">panorama</a>
+      <a href="filmes.html">filmes</a>
+      <a href="sobre.html">sobre</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">academia de artes e ciências cinematográficas · 1927–2025</p>
+        <h1 id="hero-title" class="hero__title">
+          Decifrando<br /><em>o Oscar</em>
+        </h1>
+        <p class="hero__sub">
+          <!-- 9.085 indicações. 1.826 vencedores. 98 cerimônias. -->
+          Uma análise de dados sobre a maior premiação do cinema.
+        </p>
+
+        <div class="hero__stats" role="list" aria-label="Números reais do dataset">
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-num" data-target="9085">0</span>
+            <span class="hero__stat-label">indicações</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-num" data-target="3469">0</span>
+            <span class="hero__stat-label">filmes únicos</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-num" data-target="5489">0</span>
+            <span class="hero__stat-label">pessoas indicadas</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-num" data-target="98">0</span>
+            <span class="hero__stat-label">cerimônias</span>
+          </div>
+        </div>
+
+        <div class="hero__ctas">
+          <a href="pages/panorama.html" class="btn btn--primary">explorar a análise</a>
+          <a href="pages/filmes.html"   class="btn btn--ghost">ver os filmes</a>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-label">como funciona</span>
+        <span class="hero__scroll-arrow"></span>
+      </div>
+    </section>
+
+    <!-- ── CURIOSIDADE DESTAQUE ───────────────────────────────── -->
+    <section class="highlight" aria-label="Curiosidade em destaque">
+      <div class="highlight__inner">
+        <p class="highlight__quote">
+          Apenas 1 em cada 5 indicados vence o Oscar — a taxa geral de vitória
+          ao longo de 98 cerimônias é de exatos 20,1%.
+        </p>
+        <a href="pages/panorama.html" class="highlight__cta">ver a análise completa →</a>
+      </div>
+    </section>
+
+    <!-- ── COMO FUNCIONA O OSCAR ──────────────────────────────── -->
+    <section class="como-funciona" aria-labelledby="como-funciona-title">
+      <div class="como-funciona__inner">
+
+        <div class="como-funciona__header">
+          <p class="section-eyebrow">entenda o prêmio</p>
+          <h2 id="como-funciona-title" class="section-title">Como funciona o Oscar?</h2>
+          <p class="section-sub">
+            O Oscar é concedido pela Academia de Artes e Ciências Cinematográficas (AMPAS),
+            fundada em 1927. Com mais de 10.000 membros votantes, é o prêmio mais influente
+            da indústria cinematográfica mundial.
+          </p>
+        </div>
+
+        <div class="processo">
+
+          <div class="processo__etapa">
+            <div class="processo__num" aria-hidden="true">01</div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">Elegibilidade</h3>
+              <p class="processo__texto">
+                Para concorrer, um filme precisa ter sido lançado comercialmente nos
+                Estados Unidos entre 1º de janeiro e 31 de dezembro do ano de referência,
+                por pelo menos 7 dias consecutivos em Los Angeles — a cidade do cinema.
+              </p>
+            </div>
+          </div>
+
+          <div class="processo__etapa">
+            <div class="processo__num" aria-hidden="true">02</div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">Indicações</h3>
+              <p class="processo__texto">
+                Os membros da Academia votam nas indicações dentro de suas áreas de atuação:
+                diretores indicam diretores, atores indicam atores, editores indicam editores.
+                A exceção é Melhor Filme, onde todos os membros participam.
+                Cada categoria gera tipicamente 5 indicados.
+              </p>
+            </div>
+          </div>
+
+          <div class="processo__etapa">
+            <div class="processo__num" aria-hidden="true">03</div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">Votação final</h3>
+              <p class="processo__texto">
+                Na segunda rodada, todos os membros votam em todas as categorias.
+                O vencedor é o candidato com mais votos — com exceção de Melhor Filme,
+                que desde 2009 usa um sistema de preferência instantânea (ranked choice)
+                para evitar que filmes muito populares mas com votos divididos percam.
+              </p>
+            </div>
+          </div>
+
+          <div class="processo__etapa">
+            <div class="processo__num" aria-hidden="true">04</div>
+            <div class="processo__conteudo">
+              <h3 class="processo__titulo">Cerimônia</h3>
+              <p class="processo__texto">
+                A cerimônia acontece geralmente em março, no Dolby Theatre em Hollywood.
+                Os resultados são guardados em segredo pela PricewaterhouseCoopers até
+                o momento do anúncio — em envelopes lacrados, entregues em mãos no dia.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CATEGORIAS -->
+        <div class="categorias">
+          <h3 class="categorias__titulo">As categorias do Oscar</h3>
+          <p class="categorias__sub">O prêmio conta atualmente com 23 categorias divididas em quatro grupos.</p>
+
+          <div class="categorias__grid">
+
+            <div class="cat-grupo">
+              <p class="cat-grupo__label">atuação</p>
+              <ul class="cat-grupo__lista">
+                <li>Melhor Ator</li>
+                <li>Melhor Atriz</li>
+                <li>Melhor Ator Coadjuvante</li>
+                <li>Melhor Atriz Coadjuvante</li>
+              </ul>
+            </div>
+
+            <div class="cat-grupo">
+              <p class="cat-grupo__label">direção e roteiro</p>
+              <ul class="cat-grupo__lista">
+                <li>Melhor Filme</li>
+                <li>Melhor Diretor</li>
+                <li>Melhor Roteiro Original</li>
+                <li>Melhor Roteiro Adaptado</li>
+              </ul>
+            </div>
+
+            <div class="cat-grupo">
+              <p class="cat-grupo__label">técnica</p>
+              <ul class="cat-grupo__lista">
+                <li>Melhor Fotografia</li>
+                <li>Melhor Montagem</li>
+                <li>Melhor Trilha Sonora</li>
+                <li>Melhor Canção Original</li>
+                <li>Melhor Direção de Arte</li>
+                <li>Melhor Figurino</li>
+                <li>Melhor Maquiagem</li>
+                <li>Melhor Mixagem de Som</li>
+                <li>Melhor Efeitos Visuais</li>
+              </ul>
+            </div>
+
+            <div class="cat-grupo">
+              <p class="cat-grupo__label">especiais</p>
+              <ul class="cat-grupo__lista">
+                <li>Melhor Filme Internacional</li>
+                <li>Melhor Animação</li>
+                <li>Melhor Documentário</li>
+                <li>Melhor Curta Animado</li>
+                <li>Melhor Curta Docum.</li>
+                <li>Melhor Curta Live-action</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="categorias__nota" role="note">
+            <span class="categorias__nota-num">36</span>
+            <p>categorias diferentes já existiram ao longo dos 98 anos de história do prêmio —
+            muitas foram unificadas, renomeadas ou descontinuadas. Neste dataset,
+            identificamos <strong>36 categorias canônicas</strong> únicas.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── RECORDES DO DATASET ────────────────────────────────── -->
+    <section class="recordes" aria-labelledby="recordes-title">
+      <div class="recordes__inner">
+        <div class="recordes__header">
+          <p class="section-eyebrow">dados reais · 1927–2025</p>
+          <h2 id="recordes-title" class="section-title">Os números do dataset</h2>
+        </div>
+
+        <div class="recordes__grid">
+
+          <div class="recorde-card">
+            <p class="recorde-card__num">24</p>
+            <p class="recorde-card__label">indicações</p>
+            <p class="recorde-card__filme">A Star Is Born</p>
+            <p class="recorde-card__detalhe">em 4 versões diferentes (1937, 1954, 1976, 2018) — o maior total acumulado por um título</p>
+          </div>
+
+          <div class="recorde-card">
+            <p class="recorde-card__num">11</p>
+            <p class="recorde-card__label">vitórias — recorde</p>
+            <p class="recorde-card__filme">Ben-Hur · Titanic · Lord of the Rings: Return of the King · West Side Story</p>
+            <p class="recorde-card__detalhe">quatro filmes dividem o recorde de vitórias em uma única cerimônia</p>
+          </div>
+
+          <div class="recorde-card">
+            <p class="recorde-card__num">47</p>
+            <p class="recorde-card__label">indicações — pessoa</p>
+            <p class="recorde-card__filme">John Williams</p>
+            <p class="recorde-card__detalhe">o compositor mais indicado de todos os tempos, com indicações da cerimônia 1 até a 97ª</p>
+          </div>
+
+          <div class="recorde-card">
+            <p class="recorde-card__num">21</p>
+            <p class="recorde-card__label">indicações — atuação</p>
+            <p class="recorde-card__filme">Meryl Streep</p>
+            <p class="recorde-card__detalhe">a atriz mais indicada da história, com 3 vitórias em 21 indicações ao longo de 5 décadas</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TEASER PANORAMA ────────────────────────────────────── -->
+    <section class="teaser" aria-labelledby="teaser-panorama-title">
+      <div class="teaser__inner">
+
+        <div class="teaser__text">
+          <p class="teaser__eyebrow">seção 01 — panorama</p>
+          <h2 id="teaser-panorama-title" class="teaser__title">Quem domina o Oscar?</h2>
+          <p class="teaser__body">
+            Alguns filmes acumulam indicações em quase todas as categorias.
+            Outros vencem com uma única nominação. Os gráficos revelam os padrões
+            que o gosto da Academia esconde ao longo das décadas.
+          </p>
+          <ul class="teaser__topics" aria-label="Tópicos abordados">
+            <li>Filmes e pessoas mais indicadas de todos os tempos</li>
+            <li>Como o orçamento influencia as chances de vencer</li>
+            <li>Gêneros e décadas que dominaram cada categoria</li>
+          </ul>
+          <a href="pages/panorama.html" class="teaser__link">
+            ver panorama completo
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="teaser__chart" aria-label="Prévia: filmes com mais vitórias únicas">
+          <p class="teaser__chart-label">filmes com mais vitórias — uma única cerimônia</p>
+          <div class="bar-list" role="list">
+            <div class="bar-item" role="listitem" style="--pct:100%">
+              <span class="bar-item__name">Ben-Hur</span>
+              <div class="bar-item__track"><div class="bar-item__fill"></div></div>
+              <span class="bar-item__val">11</span>
+            </div>
+            <div class="bar-item" role="listitem" style="--pct:100%">
+              <span class="bar-item__name">Titanic</span>
+              <div class="bar-item__track"><div class="bar-item__fill"></div></div>
+              <span class="bar-item__val">11</span>
+            </div>
+            <div class="bar-item" role="listitem" style="--pct:100%">
+              <span class="bar-item__name">Lord of the Rings</span>
+              <div class="bar-item__track"><div class="bar-item__fill"></div></div>
+              <span class="bar-item__val">11</span>
+            </div>
+            <div class="bar-item" role="listitem" style="--pct:100%">
+              <span class="bar-item__name">West Side Story</span>
+              <div class="bar-item__track"><div class="bar-item__fill bar-item__fill--hi"></div></div>
+              <span class="bar-item__val">11</span>
+            </div>
+            <div class="bar-item" role="listitem" style="--pct:82%">
+              <span class="bar-item__name">The English Patient</span>
+              <div class="bar-item__track"><div class="bar-item__fill bar-item__fill--dim"></div></div>
+              <span class="bar-item__val">9</span>
+            </div>
+          </div>
+          <p class="teaser__chart-note">fonte: Oscar Award dataset · 1927–2025</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── TEASER FILMES ──────────────────────────────────────── -->
+    <section class="teaser teaser--alt" aria-labelledby="teaser-filmes-title">
+      <div class="teaser__inner teaser__inner--rev">
+
+        <div class="teaser__text">
+          <p class="teaser__eyebrow">seção 02 — filmes</p>
+          <h2 id="teaser-filmes-title" class="teaser__title">Explorar cada filme</h2>
+          <p class="teaser__body">
+            Cards individuais com pôster, sinopse, orçamento, bilheteria
+            e plataformas de streaming — filtráveis por categoria, gênero, ano e resultado.
+          </p>
+          <ul class="teaser__topics" aria-label="Dados disponíveis por filme">
+            <li>Pôster e backdrop real via TMDB API</li>
+            <li>Orçamento, bilheteria e ROI</li>
+            <li>Todas as categorias indicadas e vencidas</li>
+          </ul>
+          <a href="pages/filmes.html" class="teaser__link">
+            abrir catálogo de filmes
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div id="random-poster-grid" class="poster-grid" aria-label="Prévia de filmes do catálogo">
+  <!-- Os 4 filmes aleatórios serão carregados aqui via JavaScript -->
+</div>
+
+</div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__brand">decifrando o oscar</p>
+        <p class="footer__tagline">um projeto de análise e visualização de dados</p>
+      </div>
+      <nav class="footer__nav" aria-label="Links do rodapé">
+        <a href="pages/panorama.html">panorama</a>
+        <a href="pages/filmes.html">filmes</a>
+        <a href="pages/sobre.html">sobre</a>
+      </nav>
+      <p class="footer__credit">
+        <a href="https://www.kaggle.com" target="_blank" rel="noopener">Kaggle Oscar Dataset</a>
+        · <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB API</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/tema-oscar.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filmes — Decifrando o Oscar</title>
+  <meta name="description" content="Catálogo de filmes indicados e vencedores do Oscar, com pôster, orçamento e bilheteria." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/filmes.css" />
+</head>
+<body>
+
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav__logo" aria-label="Decifrando o Oscar — início">Decifrando o Oscar</a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-links" class="nav__links" role="navigation" aria-label="Menu principal">
+      <a href="panorama.html">panorama</a>
+      <a href="filmes.html" aria-current="page">filmes</a>
+      <a href="sobre.html">sobre</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-header">
+      <div class="page-header__inner">
+        <div>
+          <h1 class="page-header__title">Explorar filmes</h1>
+          <p class="page-header__sub">
+            <span id="films-count">0</span> filmes encontrados
+            <span class="sep" aria-hidden="true">·</span>
+            filtre por categoria, gênero ou período
+          </p>
+        </div>
+        <div class="search-wrap">
+          <svg class="search-wrap__icon" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input id="search-input" class="search-wrap__input" type="search"
+            placeholder="buscar por título ou diretor..." aria-label="Buscar filmes" autocomplete="off" />
+        </div>
+      </div>
+    </section>
+
+    <section class="filters-bar" aria-label="Filtros de filmes">
+      <div class="filters-bar__inner">
+        <div class="filter-group" role="group" aria-label="Resultado">
+          <button class="filter-pill filter-pill--active" data-group="resultado" data-value="todos">todos</button>
+          <button class="filter-pill" data-group="resultado" data-value="vencedores">vencedores</button>
+          <button class="filter-pill" data-group="resultado" data-value="indicados">indicados</button>
+        </div>
+        <div class="filters-sep" aria-hidden="true"></div>
+        <div class="filter-group" role="group" aria-label="Gênero">
+          <button class="filter-pill" data-group="genero" data-value="Drama">drama</button>
+          <button class="filter-pill" data-group="genero" data-value="Comédia">comédia</button>
+          <button class="filter-pill" data-group="genero" data-value="Biografia">biografia</button>
+          <button class="filter-pill" data-group="genero" data-value="Crime">crime</button>
+        </div>
+        <div class="filters-sep" aria-hidden="true"></div>
+        <div class="filter-group" role="group" aria-label="Período">
+          <button class="filter-pill" data-group="periodo" data-value="1990-2000">1990–2000</button>
+          <button class="filter-pill" data-group="periodo" data-value="2000-2010">2000–2010</button>
+          <button class="filter-pill" data-group="periodo" data-value="2010-2020">2010–2020</button>
+          <button class="filter-pill" data-group="periodo" data-value="2020-2024">2020–2024</button>
+        </div>
+        <button id="clear-filters" class="clear-btn" hidden>✕ limpar</button>
+      </div>
+    </section>
+
+    <section class="catalog">
+      <div class="catalog__inner">
+        <div id="films-grid" class="films-grid" role="list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6" stroke-linecap="round"/>
+          </svg>
+          <p class="empty-state__title">Nenhum filme encontrado</p>
+          <p class="empty-state__sub">Tente ajustar os filtros ou a busca</p>
+        </div>
+      </div>
+    </section>
+
+    <nav id="pagination" class="pagination" aria-label="Paginação de filmes"></nav>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__brand">decifrando o oscar</p>
+        <p class="footer__tagline">um projeto de análise e visualização de dados</p>
+      </div>
+      <nav class="footer__nav" aria-label="Links do rodapé">
+        <a href="panorama.html">panorama</a>
+        <a href="filmes.html">filmes</a>
+        <a href="sobre.html">sobre</a>
+      </nav>
+      <p class="footer__credit">
+        <a href="https://www.kaggle.com" target="_blank" rel="noopener">Kaggle Oscar Dataset</a>
+        ·
+        <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB API</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/tema-oscar.js"></script>
+  <script src="js/filmes.js"></script>
+</body>
+</html>
