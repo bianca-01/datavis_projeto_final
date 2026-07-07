@@ -1,0 +1,474 @@
+/* ════════════════════════════════════════════════════════════
+   filmes.css — Decifrando o Oscar · Página de Filmes
+   Complementa main.css — requer as variáveis CSS de lá
+   ════════════════════════════════════════════════════════════ */
+
+/* ── CABEÇALHO DA PÁGINA ──────────────────────────────────── */
+.page-header {
+  padding: 52px var(--pad-x) 32px;
+  border-bottom: 0.5px solid var(--c-border);
+  background: var(--c-bg);
+}
+
+.page-header__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.page-header__title {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 40px);
+  color: var(--c-text);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.page-header__sub {
+  font-size: 13px;
+  color: var(--c-text-muted);
+}
+
+.page-header__sub #films-count {
+  color: var(--c-gold);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.sep {
+  margin: 0 8px;
+  opacity: 0.4;
+}
+
+/* ── BUSCA ────────────────────────────────────────────────── */
+.search-wrap {
+  position: relative;
+  min-width: 240px;
+  flex: 0 1 300px;
+}
+
+.search-wrap__icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--c-text-faint);
+  pointer-events: none;
+}
+
+.search-wrap__input {
+  width: 100%;
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-border);
+  border-radius: 8px;
+  padding: 10px 14px 10px 36px;
+  font-size: 13px;
+  font-family: var(--f-body);
+  color: var(--c-text);
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+
+.search-wrap__input::placeholder {
+  color: var(--c-text-faint);
+}
+
+.search-wrap__input:focus {
+  border-color: var(--c-gold);
+}
+
+/* remove botão nativo do campo search */
+.search-wrap__input::-webkit-search-cancel-button { display: none; }
+
+/* ── FILTROS ──────────────────────────────────────────────── */
+.filters-bar {
+  padding: 0 var(--pad-x);
+  background: var(--c-bg);
+  border-bottom: 0.5px solid var(--c-border);
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 50;
+}
+
+.filters-bar__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters-bar__inner::-webkit-scrollbar { display: none; }
+
+.filter-group {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.filters-sep {
+  width: 0.5px;
+  height: 20px;
+  background: var(--c-border);
+  flex-shrink: 0;
+  margin: 0 6px;
+}
+
+.filter-pill {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-family: var(--f-body);
+  font-weight: 400;
+  border-radius: 20px;
+  border: 0.5px solid var(--c-border);
+  background: none;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: var(--c-border-2);
+  color: var(--c-gold);
+}
+
+.filter-pill--active {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: #0E0D0C;
+  font-weight: 500;
+}
+
+.clear-btn {
+  margin-left: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-text-muted);
+  font-size: 12px;
+  font-family: var(--f-body);
+  white-space: nowrap;
+  padding: 4px 8px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.clear-btn:hover { color: var(--c-gold); }
+
+/* ── CATÁLOGO / GRID ──────────────────────────────────────── */
+.catalog {
+  padding: 40px var(--pad-x) 64px;
+}
+
+.catalog__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.films-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── CARD DE FILME ────────────────────────────────────────── */
+.film-card {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.film-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--c-gold);
+}
+
+/* Poster */
+.film-card__poster {
+  position: relative;
+  aspect-ratio: 2 / 2.6;
+  background: var(--c-surface-2);
+  overflow: hidden;
+}
+
+.film-card__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s;
+}
+
+.film-card:hover .film-card__poster img {
+  filter: brightness(0.7);
+}
+
+.film-card__poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-faint);
+}
+
+.film-card__hover-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 32px 12px 12px;
+  background: linear-gradient(transparent, rgba(14,13,12,0.95));
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.film-card:hover .film-card__hover-overlay { opacity: 1; }
+
+.film-card__hover-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.3;
+}
+
+/* Body */
+.film-card__body {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.film-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.film-card__title {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--c-text);
+  line-height: 1.25;
+  flex: 1;
+}
+
+.film-card__meta {
+  font-size: 12px;
+  color: var(--c-text-muted);
+  margin-top: -4px;
+}
+
+.film-card__genres {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  font-size: 11px;
+  color: var(--c-text-muted);
+  background: var(--c-surface-2);
+  border: 0.5px solid var(--c-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.film-card__stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 0.5px solid var(--c-border);
+  margin-top: auto;
+}
+
+.film-card__noms {
+  font-size: 12px;
+  color: var(--c-text-muted);
+}
+
+.film-card__wins {
+  color: var(--c-gold);
+}
+
+.film-card__wins--zero {
+  color: var(--c-text-muted);
+}
+
+.film-card__box {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── BADGES ───────────────────────────────────────────────── */
+.badge--win {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 2px 8px;
+  background: var(--c-gold);
+  color: #0E0D0C;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge--nom {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 2px 8px;
+  background: var(--c-gold-bg);
+  color: var(--c-gold);
+  border: 0.5px solid rgba(212,175,55,0.35);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── ESTADO VAZIO ─────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 80px 0;
+  color: var(--c-text-faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-state svg { color: var(--c-text-faint); }
+
+.empty-state__title {
+  font-family: var(--f-display);
+  font-size: 18px;
+  color: var(--c-text-muted);
+}
+
+.empty-state__sub {
+  font-size: 13px;
+  color: var(--c-text-faint);
+}
+
+/* ── PAGINAÇÃO ────────────────────────────────────────────── */
+.pagination {
+  padding: 0 var(--pad-x) 64px;
+}
+
+.pagination__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.page-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0.5px solid var(--c-border);
+  border-radius: 6px;
+  color: var(--c-text-muted);
+  font-size: 13px;
+  font-family: var(--f-body);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.page-btn:hover:not(:disabled):not(.page-btn--active) {
+  border-color: var(--c-border-2);
+  color: var(--c-gold);
+}
+
+.page-btn--active {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: #0E0D0C;
+  font-weight: 600;
+  cursor: default;
+}
+
+.page-btn:disabled {
+  color: var(--c-text-faint);
+  cursor: not-allowed;
+  border-color: var(--c-border);
+  opacity: 0.5;
+}
+
+.page-ellipsis {
+  width: 36px;
+  text-align: center;
+  color: var(--c-text-faint);
+  font-size: 13px;
+  user-select: none;
+}
+
+/* ── RESPONSIVIDADE ───────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .films-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .films-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .page-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-wrap {
+    width: 100%;
+    flex: none;
+    min-width: 0;
+  }
+
+  .films-grid { grid-template-columns: 1fr; }
+
+  .film-card {
+    flex-direction: row;
+    max-height: 160px;
+  }
+
+  .film-card__poster {
+    width: 100px;
+    min-width: 100px;
+    aspect-ratio: auto;
+    height: 160px;
+  }
+
+  .film-card__hover-overlay { display: none; }
+
+  .film-card__body { padding: 12px; }
+
+  .film-card__title { font-size: 14px; }
+}
