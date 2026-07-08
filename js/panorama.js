@@ -494,8 +494,8 @@
                     }
                 ]
             },
-            width: 800,
-            height: 380
+            width: 900,
+            height: 400
         }
     }
 
@@ -574,101 +574,125 @@
             },
             width: 500,
             height: 480,
-            title: {
-                text: 'Matriz de Correlação entre Prêmios de um Mesmo Filme'
-            }
+            // title: {
+            //     text: 'Matriz de Correlação entre Prêmios de um Mesmo Filme'
+            // }
         }
     }
 
     function specDiretores(d) {
-        const bestPicSet = new Set()
-        d.forEach(item => {
-            if (
-                item.canon_category === 'BEST PICTURE' &&
-                String(item.winner).toLowerCase() === 'true'
-            ) {
-                bestPicSet.add(`${item.film}|${item.year_film}`)
-            }
-        })
-        const directing = d.filter(item => item.canon_category === 'DIRECTING')
-        const stats = {}
-        directing.forEach(item => {
-            const name = item.name
-            if (!name) return
-            if (!stats[name]) {
-                stats[name] = {
-                    total: 0,
-                    winsBestPic: 0,
-                    filmesIndicados: new Set(),
-                    filmesVencedores: new Set()
-                }
-            }
-            stats[name].total += 1
-            stats[name].filmesIndicados.add(item.film)
-            if (bestPicSet.has(`${item.film}|${item.year_film}`)) {
-                stats[name].winsBestPic += 1
-                stats[name].filmesVencedores.add(item.film)
-            }
-        })
-        const data = Object.entries(stats)
-            .map(([name, s]) => ({
-                name,
-                total: s.total,
-                winsBestPic: s.winsBestPic,
-                filmesIndicados: Array.from(s.filmesIndicados).join(', '),
-                filmesVencedores: Array.from(s.filmesVencedores).join(', ')
-            }))
-            .filter(item => item.total > 0)
+    const bestPicSet = new Set()
+    d.forEach(item => {
+        if (
+            item.canon_category === 'BEST PICTURE' &&
+            String(item.winner).toLowerCase() === 'true'
+        ) {
+            bestPicSet.add(`${item.film}|${item.year_film}`)
+        }
+    })
 
-        return {
-            $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-            data: { values: data },
-            mark: { type: 'circle', size: 100, opacity: 0.7 },
-            encoding: {
-                x: {
+    const directing = d.filter(item => item.canon_category === 'DIRECTING')
+    const stats = {}
+
+    directing.forEach(item => {
+        const name = item.name
+        if (!name) return
+        
+        if (!stats[name]) {
+            stats[name] = {
+                total: 0,
+                winsBestPic: 0,
+                filmesIndicadosDirecao: new Set(),
+                filmesVencedoresDirecao: new Set(),
+                filmesVencedoresBestPic: new Set()
+            }
+        }
+        
+        const isWinnerDirecao = String(item.winner).toLowerCase() === 'true'
+
+        stats[name].total += 1
+        // Filmes em que foi indicado a Direção
+        stats[name].filmesIndicadosDirecao.add(item.film)
+        
+        // Filmes em que VENCEU Direção
+        if (isWinnerDirecao) {
+            stats[name].filmesVencedoresDirecao.add(item.film)
+        }
+
+        // Filmes do diretor que venceram Melhor Filme
+        if (bestPicSet.has(`${item.film}|${item.year_film}`)) {
+            stats[name].winsBestPic += 1
+            stats[name].filmesVencedoresBestPic.add(item.film)
+        }
+    })
+
+    const data = Object.entries(stats)
+        .map(([name, s]) => ({
+            name,
+            total: s.total,
+            winsBestPic: s.winsBestPic,
+            // Conta quantas vitórias em direção ele teve
+            vitoriasDirecao: s.filmesVencedoresDirecao.size, 
+            filmesIndicadosDirecao: Array.from(s.filmesIndicadosDirecao).join(', '),
+            filmesVencedoresDirecao: Array.from(s.filmesVencedoresDirecao).join(', ') || 'Nenhum',
+            filmesVencedoresBestPic: Array.from(s.filmesVencedoresBestPic).join(', ') || 'Nenhum'
+        }))
+        .filter(item => item.total > 0)
+
+    return {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        data: { values: data },
+        mark: { type: 'circle', size: 100, opacity: 0.7 },
+        encoding: {
+            x: {
+                field: 'total',
+                type: 'quantitative',
+                title: 'Indicações a Melhor Direção'
+            },
+            y: {
+                field: 'winsBestPic',
+                type: 'quantitative',
+                title: 'Filmes do diretor que venceram Melhor Filme'
+            },
+            color: {
+                field: 'winsBestPic',
+                type: 'quantitative',
+                scale: { range: ['#7A2E2E', '#D4AF37'] },
+                legend: null
+            },
+            tooltip: [
+                { field: 'name', type: 'nominal', title: 'Diretor' },
+                {
                     field: 'total',
                     type: 'quantitative',
-                    title: 'Indicações a Melhor Direção'
+                    title: 'Total de Indicações (Direção)'
                 },
-                y: {
-                    field: 'winsBestPic',
+                {
+                    field: 'vitoriasDirecao',
                     type: 'quantitative',
-                    title: 'Filmes do diretor que venceram Melhor Filme'
+                    title: 'Total de Vitórias (Direção)'
                 },
-                color: {
-                    field: 'winsBestPic',
-                    type: 'quantitative',
-                    scale: { range: ['#7A2E2E', '#D4AF37'] },
-                    legend: null
+                {
+                    field: 'filmesIndicadosDirecao',
+                    type: 'nominal',
+                    title: 'Filmes Indicados em Direção'
                 },
-                tooltip: [
-                    { field: 'name', type: 'nominal', title: 'Diretor' },
-                    {
-                        field: 'total',
-                        type: 'quantitative',
-                        title: 'Indicações a Direção'
-                    },
-                    {
-                        field: 'winsBestPic',
-                        type: 'quantitative',
-                        title: 'Vitórias em Melhor Filme'
-                    },
-                    {
-                        field: 'filmesIndicados',
-                        type: 'nominal',
-                        title: 'Filmes indicados'
-                    },
-                    {
-                        field: 'filmesVencedores',
-                        type: 'nominal',
-                        title: 'Filmes que venceram Melhor Filme'
-                    }
-                ]
-            },
-            width: 700,
-            height: 420
-        }
+                {
+                    field: 'filmesVencedoresDirecao',
+                    type: 'nominal',
+                    title: 'Venceu Direção por'
+                },
+                {
+                    field: 'filmesVencedoresBestPic',
+                    type: 'nominal',
+                    title: 'Filmes que levaram Melhor Filme'
+                }
+            ]
+        },
+        width: 700,
+        height: 420
     }
+}
 
     function specOrcamentoDecada(d) {
         const bestPics = d.filter(
@@ -694,7 +718,7 @@
             data: { values: data },
             mark: { type: 'bar', cornerRadiusEnd: 3, color: '#D4AF37' },
             encoding: {
-                x: { field: 'decade', type: 'nominal', title: 'Década' },
+                x: { field: 'decade', type: 'nominal', title: null },
                 y: {
                     field: 'orcamento_medio',
                     type: 'quantitative',
@@ -737,7 +761,7 @@
                     window: [{ op: 'rank', as: 'rank' }],
                     sort: [{ field: 'roi', order: 'descending' }]
                 },
-                { filter: 'datum.rank<=20' }
+                { filter: 'datum.rank<=5' }
             ],
             mark: { type: 'bar', cornerRadiusEnd: 3, color: '#AA7C11' },
             encoding: {
@@ -767,7 +791,7 @@
                 ]
             },
             width: 700,
-            height: 420
+            height: 250
         }
     }
 
@@ -1198,7 +1222,7 @@
                 year: Number(item.year_film),
                 score: item.bt_score,
                 score_jitter: item.bt_score + (Math.random() - 0.5) * 0.18,
-                film: item.film
+                film: item.titulo
             }))
 
         return {
@@ -1213,7 +1237,7 @@
                 x: {
                     field: 'year',
                     type: 'quantitative',
-                    title: 'Ano de Lançamento',
+                    title: null,
                     scale: { domain: [1927, 2025] }
                 },
                 y: {
