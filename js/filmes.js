@@ -287,7 +287,7 @@ function showGridLoading() {
 // ── INIT ──────────────────────────────────────────────────────
 showGridLoading()
 
-fetch('filmes.json')
+fetch('data/filmes.json')
   .then(r => { if (!r.ok) throw new Error('filmes.json não encontrado'); return r.json() })
   .then(data => {
     ALL_FILMS = buildFilms(data)

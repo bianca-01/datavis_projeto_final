@@ -90,7 +90,7 @@
     }
 
     function inicializar() {
-        fetch('filmes.json')
+        fetch('data/filmes.json')
             .then(r => {
                 if (!r.ok) throw new Error('filmes.json não encontrado')
                 return r.json()

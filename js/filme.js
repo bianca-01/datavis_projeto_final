@@ -625,7 +625,7 @@ if (!idStr || idStr === 'null' || idStr === 'undefined') {
         'Nenhum filme foi selecionado. Escolha um na lista.'
     )
 } else {
-    fetch('filmes.json')
+    fetch('data/filmes.json')
         .then(r => {
             if (!r.ok)
                 throw new Error(
