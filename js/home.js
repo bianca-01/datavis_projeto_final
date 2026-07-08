@@ -90,7 +90,7 @@ const sortear = document.addEventListener('DOMContentLoaded', () => {
     const gridContainer = document.getElementById('random-poster-grid')
     if (!gridContainer) return
 
-    fetch('filmes.json')
+    fetch('data/filmes.json')
         .then(response => {
             if (!response.ok) throw new Error('Erro ao carregar filmes.json')
             return response.json()

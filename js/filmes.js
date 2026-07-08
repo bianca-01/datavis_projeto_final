@@ -81,7 +81,8 @@ function renderCard(film) {
   art.style.cursor = 'pointer'
   art.addEventListener('click', () => {
     const id = film.tmdb_id || film.imdb_id || film.slug
-    window.location.href = 'filme.html?id=' + encodeURIComponent(id)
+    const url = 'filme.html?id=' + encodeURIComponent(id)
+    window.open(url, '_blank')
   })
 
   const winsText = film.total_wins === 1 ? '1 vitória' : film.total_wins + ' vitórias'

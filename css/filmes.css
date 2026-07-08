@@ -5,6 +5,7 @@
   padding: 52px var(--pad-x) 32px;
   border-bottom: 0.5px solid var(--c-border);
   background: var(--c-bg);
+  margin-top: 24px;
 }
 
 .page-header__inner {

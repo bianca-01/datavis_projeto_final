@@ -514,14 +514,22 @@ function render(film, allFilms) {
       }
 
       ${
-          film.colecao
-              ? `
-      <section class="detail-section" style="padding-bottom:8px">
-        <p class="detail-section__label">coleção</p>
-        <p style="font-size:13px;color:var(--c-text-muted)">${film.colecao}</p>
-      </section>`
-              : ''
+  film.colecao && film.colecao.nome
+    ? `
+  <section class="detail-section" style="padding-bottom:16px">
+    <p class="detail-section__label">coleção</p>
+    <div class="collection-widget" style="display:flex; gap:12px; align-items:center; margin-top:8px; background:var(--c-surface-2, #1a1a1a); padding:10px; border-radius:8px">
+      ${film.colecao.poster_url 
+        ? `<img src="${film.colecao.poster_url}" alt="Pôster de ${film.colecao.nome}" style="width:45px; height:65px; object-fit:cover; border-radius:4px;" />` 
+        : ''
       }
+      <div class="collection-widget__info">
+        <p style="font-size:14px; font-weight:500; margin:0">${film.colecao.nome}</p>
+      </div>
+    </div>
+  </section>`
+    : ''
+}
 
     </div>
   `
