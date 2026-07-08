@@ -1,9 +1,3 @@
-/* ==========================================================================
-   Decifrando o Oscar — design tokens
-   fundo #0E0D0C · dourado #D4AF37 · acento #7A2E2E · texto #F2EFE9 · texto sec #9A958C
-   Playfair Display (títulos) · Inter (corpo)
-   ========================================================================== */
-
 :root {
   --fundo: #0E0D0C;
   --fundo-elevado: #171513;

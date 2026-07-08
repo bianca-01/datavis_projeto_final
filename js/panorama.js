@@ -1,8 +1,3 @@
-// ============================================================
-// panorama.js — Decifrando o Oscar
-// Versão Adaptada com Identidade Visual Premium + Tooltips Completos
-// ============================================================
-
 ;(function () {
     'use strict'
 
@@ -16,7 +11,6 @@
         return
     }
 
-    // Configuração global de estilo conforme "Captura de tela 2026-07-05 212701.png"
     const temaOscarConfig = {
         background: '#0E0D0C', // Cor de fundo: fundo • #0E0D0C
         title: {
@@ -131,9 +125,6 @@
 
         spec.config = temaOscarConfig
 
-        // Torna todos os gráficos responsivos: a largura sempre se ajusta
-        // à largura do container, eliminando qualquer rolagem horizontal.
-        // A altura autoral de cada spec é preservada (define a proporção do gráfico).
         spec.width = 'container'
         spec.autosize = { type: 'fit-x', contains: 'padding', resize: true }
 
@@ -227,7 +218,6 @@
             },
             width: 620,
             height: 420
-            //   title: { text: 'Top 10 Filmes com Mais Indicações ao Oscar', subtitle: 'Cor indica o número de vitórias acumuladas' }
         }
     }
 
@@ -298,9 +288,8 @@
             width: 800, // largura maior
             height: 420,
             view: {
-                padding: { right: 80 } // margem direita generosa
+                padding: { right: 80 }
             },
-            // Opcional: desativa clipping para garantir
             config: { view: { stroke: null } }
         }
     }
@@ -357,7 +346,6 @@
             },
             width: 650,
             height: 300
-            //   title: { text: 'Franquias e Coleções com Mais Oscars' }
         }
     }
 
@@ -408,11 +396,7 @@
                 ]
             },
             width: 700,
-            height: 300,
-            title: {
-                text: 'Pessoas com Vitórias em Múltiplas Categorias',
-                subtitle: 'Apenas quem venceu em 2 ou mais divisões distintas'
-            }
+            height: 300
         }
     }
 
@@ -435,7 +419,7 @@
         return {
             $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
             data: { values: data },
-            mark: { type: 'bar', cornerRadiusEnd: 3, color: '#7A2E2E' }, // Tom de Destaque/Acento
+            mark: { type: 'bar', cornerRadiusEnd: 3, color: '#7A2E2E' },
             encoding: {
                 x: {
                     field: 'nominations',
@@ -512,7 +496,6 @@
             },
             width: 800,
             height: 380
-            //   title: { text: 'Nota Média dos Vencedores de Melhor Filme ao Longo do Tempo' }
         }
     }
 
@@ -684,7 +667,6 @@
             },
             width: 700,
             height: 420
-            //   title: { text: 'Diretores mais indicados: Direção × Melhor Filme' }
         }
     }
 
@@ -728,8 +710,7 @@
                 ]
             },
             width: 700,
-            height: 280,
-            title: { text: 'Orçamento Médio dos Melhores Filmes por Década' }
+            height: 280
         }
     }
 
@@ -787,7 +768,6 @@
             },
             width: 700,
             height: 420
-            //   title: { text: 'Retorno Sobre Orçamento (ROI) — Top 20 Melhores Filmes' }
         }
     }
 
@@ -842,10 +822,6 @@
             },
             width: 800,
             height: 280
-            //   title: {
-            //     text: 'Bilheteria dos Vencedores de Melhores Efeitos Visuais',
-            //     subtitle: 'Escala logarítmica – Filmes de grande orçamento dominam?'
-            //   }
         }
     }
 
@@ -884,10 +860,7 @@
                 ]
             },
             width: 500,
-            height: 280,
-            // title: {
-            //     text: 'Número de Vitórias em Melhor Filme (Primeiro Gênero)'
-            // }
+            height: 280
         }
     }
 
@@ -944,7 +917,6 @@
             },
             width: 700,
             height: 280
-            //   title: { text: 'Melhor Figurino: Filmes de Época × Contemporâneos por Década' }
         }
     }
 
@@ -988,7 +960,6 @@
             },
             width: 600,
             height: 400
-            //   title: { text: 'Palavras‑chave Mais Comuns em Melhor Filme' }
         }
     }
 
@@ -1027,7 +998,6 @@
             },
             width: 700,
             height: 300
-            //   title: { text: 'Países Vencedores em Melhor Filme Internacional' }
         }
     }
 
@@ -1162,10 +1132,17 @@
     }
 
     function specBechdelDist(d) {
-        const counts = [0, 1, 2, 3].map(s => ({ score: s, count: 0 }))
-        d.forEach((item, i) => {
-            counts[i % 4].count++
-        })
+        const winners = d.filter(
+            item =>
+                item.canon_category === 'BEST PICTURE' &&
+                item.winner === 'True' &&
+                item.bt_score != null
+        )
+
+        const counts = [0, 1, 2, 3].map(score => ({
+            score,
+            count: winners.filter(f => f.bt_score === score).length
+        }))
 
         return {
             $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
@@ -1193,44 +1170,50 @@
                     scale: {
                         domain: [0, 1, 2, 3],
                         range: ['#7A2E2E', '#9A958C', '#AA7C11', '#D4AF37']
-                    }
+                    },
+                    legend: null
                 },
                 tooltip: [
-                    {
-                        field: 'score',
-                        type: 'ordinal',
-                        title: 'Pontuação Bechdel'
-                    },
-                    {
-                        field: 'count',
-                        type: 'quantitative',
-                        title: 'Número de Filmes'
-                    }
+                    { field: 'score', title: 'Pontuação' },
+                    { field: 'count', title: 'Filmes' }
                 ]
             },
             width: 400,
-            height: 260,
-            title: { text: 'Distribuição do Teste de Bechdel' }
+            height: 260
+            // title: {
+            //     text: 'Distribuição do Teste de Bechdel (Vencedores de Melhor Filme)'
+            // }
         }
     }
 
     function specBechdelScatter(d) {
-        const jittered = d.map((item, i) => ({
-            year: 1927 + (i % 95),
-            score: i % 4,
-            score_jitter: (i % 4) + (Math.random() - 0.5) * 0.18,
-            film: item.film || `Filme ${i}`
-        }))
+        const winners = d
+            .filter(
+                item =>
+                    item.canon_category === 'BEST PICTURE' &&
+                    item.winner === 'True' &&
+                    item.bt_score != null
+            )
+            .map(item => ({
+                year: Number(item.year_film),
+                score: item.bt_score,
+                score_jitter: item.bt_score + (Math.random() - 0.5) * 0.18,
+                film: item.film
+            }))
 
         return {
             $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-            data: { values: jittered },
-            mark: { type: 'circle', size: 70, opacity: 0.65 },
+            data: { values: winners },
+            mark: {
+                type: 'circle',
+                size: 70,
+                opacity: 0.65
+            },
             encoding: {
                 x: {
                     field: 'year',
                     type: 'quantitative',
-                    title: 'Ano da Cerimônia',
+                    title: 'Ano de Lançamento',
                     scale: { domain: [1927, 2025] }
                 },
                 y: {
@@ -1239,13 +1222,12 @@
                     title: 'Pontuação Bechdel',
                     scale: { domain: [-0.2, 3.2] },
                     axis: {
-                        values: [0, 1, 2, 3],
-                        labelExpr: "datum.value == 3 ? 'Passa' : datum.value"
+                        values: [0, 1, 2, 3]
                     }
                 },
                 color: {
                     field: 'score',
-                    type: 'nominal',
+                    type: 'ordinal',
                     legend: null,
                     scale: {
                         domain: [0, 1, 2, 3],
@@ -1253,14 +1235,16 @@
                     }
                 },
                 tooltip: [
-                    { field: 'film', type: 'nominal', title: 'Filme' },
-                    { field: 'year', type: 'quantitative', title: 'Ano' },
-                    { field: 'score', type: 'quantitative', title: 'Pontuação' }
+                    { field: 'film', title: 'Filme' },
+                    { field: 'year', title: 'Ano' },
+                    { field: 'score', title: 'Pontuação Bechdel' }
                 ]
             },
             width: 850,
-            height: 320,
-            title: { text: 'Evolução Histórica do Teste de Bechdel' }
+            height: 320
+            // title: {
+            //     text: 'Evolução Histórica do Teste de Bechdel (Vencedores de Melhor Filme)'
+            // }
         }
     }
 })()
@@ -1289,7 +1273,5 @@ function atualizarStatsDoHeader(dadosProntos) {
             bTag.setAttribute('data-count', filmesUnicos)
             bTag.innerText = filmesUnicos
         }
-        // Nota: Os contadores de "gráficos" podem continuar fixos no HTML,
-        // já que representam a estrutura da sua página e não o tamanho do JSON.
     })
 }

@@ -2,10 +2,6 @@
 //  tema-oscar.js
 //  Tema escuro dourado para todos os gráficos
 //  Vega-Lite do site "Decifrando o Oscar"
-//
-//  Uso:
-//    <script src="js/tema-oscar.js"></script>
-//    vegaEmbed("#meu-grafico", spec, temaOscar)
 // ─────────────────────────────────────────────
 
 const CORES = {
@@ -198,10 +194,6 @@ const opcoesEmbed = {
  * @param {object}  extra    - Opções adicionais para o vegaEmbed (opcional)
  * @returns {Promise}        - Promise do vegaEmbed
  *
- * Exemplos:
- *   renderGrafico("#chart-indicados", specIndicados)
- *   renderGrafico("#chart-lollipop",  "./specs/lollipop.json")
- *   renderGrafico("#chart-bar", spec, { theme: temaOscarHorizontal })
  */
 async function renderGrafico(seletor, spec, extra = {}) {
   const tema = extra.tema ?? temaOscar
@@ -224,18 +216,6 @@ async function renderGrafico(seletor, spec, extra = {}) {
   })
 }
 
-
-/**
- * Renderiza todos os elementos com data-spec no atributo,
- * útil para inicializar vários gráficos de uma vez.
- *
- * Uso no HTML:
- *   <div class="grafico" data-spec="./specs/indicados.json"></div>
- *   <div class="grafico" data-spec="./specs/lollipop.json"></div>
- *
- * No JS:
- *   renderTodosGraficos()
- */
 function renderTodosGraficos(seletor = ".grafico") {
   document.querySelectorAll(seletor).forEach(el => {
     const specUrl = el.dataset.spec

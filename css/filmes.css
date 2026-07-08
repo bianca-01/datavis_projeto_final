@@ -1,7 +1,4 @@
-/* ════════════════════════════════════════════════════════════
-   filmes.css — Decifrando o Oscar · Página de Filmes
-   Complementa main.css — requer as variáveis CSS de lá
-   ════════════════════════════════════════════════════════════ */
+
 
 /* ── CABEÇALHO DA PÁGINA ──────────────────────────────────── */
 .page-header {
@@ -84,7 +81,6 @@
   border-color: var(--c-gold);
 }
 
-/* remove botão nativo do campo search */
 .search-wrap__input::-webkit-search-cancel-button { display: none; }
 
 /* ── FILTROS ──────────────────────────────────────────────── */

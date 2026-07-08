@@ -1,9 +1,3 @@
-/* ════════════════════════════════════════════════════════════
-   main.css — Decifrando o Oscar
-   Paleta: grafite · dourado · vermelho escuro · areia
-   Tipografia: Playfair Display (títulos) + Inter (corpo/UI)
-   ════════════════════════════════════════════════════════════ */
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
